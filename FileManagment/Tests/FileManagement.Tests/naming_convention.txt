@@ -1,0 +1,6 @@
+﻿Should_ExpectedBehavior_When_StateUnderTest: 
+	This technique is also used by many as it makes it easy to read the tests. 
+	Following is how tests in first example would read like if named using this technique:
+		- Should_ThrowException_When_AgeLessThan18
+		- Should_FailToWithdrawMoney_ForInvalidAccount
+		- Should_FailToAdmit_IfMandatoryFieldsAreMissing

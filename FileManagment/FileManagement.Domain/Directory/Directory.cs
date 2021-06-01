@@ -23,6 +23,7 @@ namespace FileManagement.Domain.Directory
             Id = new DirectoryId(Identity.NewId);
             _name = @event.Name;
             _createdDateTime = Clock.Now;
+            _ownerUserId = @event.OwnerUserId;
             _parentId = @event.ParentDirectoryId;
             _directoryItems = new List<DirectoryItem>();
         }
@@ -39,7 +40,7 @@ namespace FileManagement.Domain.Directory
         {
             bool valid = Id != null && _ownerUserId != null && _name != null;
             valid &= !_directoryItems.GroupBy(x => x.Id).Any(x => x.Count() > 1);
-            valid &= _createdDateTime < _modifiedDateTime;
+            valid &= _modifiedDateTime == null || _createdDateTime < _modifiedDateTime;
             if (!valid)
                 throw new InvalidEntityStateException(this);
 
