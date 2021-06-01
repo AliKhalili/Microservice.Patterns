@@ -3,11 +3,13 @@ using System.Linq;
 
 namespace Infrastructures.Domain
 {
-    public abstract class AggregateRoot<TId> : IInternalEventHandler
+    public abstract class AggregateRoot<TId> : AggregateRoot
         where TId : ValueObject
     {
         public TId Id { get; protected set; }
-
+    }
+    public abstract class AggregateRoot : IInternalEventHandler
+    {
         protected abstract void When(IInternalEvent @event);
 
         private readonly List<IInternalEvent> _changes;

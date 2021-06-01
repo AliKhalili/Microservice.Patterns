@@ -3,7 +3,7 @@ using Infrastructures.Domain;
 
 namespace FileManagement.Domain.Directory
 {
-    public class DirectoryItem: Entity<DirectoryItemId>
+    public class DirectoryItem : Entity<DirectoryItemId>
     {
         private DirectoryId _directoryId;
         private string _name;

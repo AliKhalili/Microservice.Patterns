@@ -2,16 +2,23 @@
 
 namespace Infrastructures.Domain
 {
-    public abstract class Entity<TId> : IInternalEventHandler
+    public abstract class Entity<TId> : Entity
         where TId : ValueObject
+    {
+        protected Entity(Action<IInternalEvent> applier) : base(applier)
+        {
+
+        }
+        protected Entity() { }
+
+        public TId Id { get; protected set; }
+    }
+    public abstract class Entity : IInternalEventHandler
     {
         private readonly Action<IInternalEvent> _applier;
 
-        public TId Id { get; protected set; }
-
-        protected Entity(Action<IInternalEvent> applier) => _applier = applier;
-
         protected Entity() { }
+        protected Entity(Action<IInternalEvent> applier) => _applier = applier;
 
         protected abstract void When(IInternalEvent @event);
 
