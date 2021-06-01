@@ -4,7 +4,7 @@ using System.Linq;
 namespace Infrastructures.Domain
 {
     public abstract class AggregateRoot<TId> : IInternalEventHandler
-        where TId : ValueObject<TId>
+        where TId : ValueObject
     {
         public TId Id { get; protected set; }
 

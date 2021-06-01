@@ -3,7 +3,7 @@
 namespace Infrastructures.Domain
 {
     public abstract class Entity<TId> : IInternalEventHandler
-        where TId : ValueObject<TId>
+        where TId : ValueObject
     {
         private readonly Action<IInternalEvent> _applier;
 
