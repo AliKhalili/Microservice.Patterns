@@ -17,10 +17,10 @@ namespace FileManagement.Tests
             _validatorNotificationHandler= new FakeValidationNotificationHandler();
             _entity = new Directory(_validatorNotificationHandler);
         }
+
         [Fact]
         public void Should_CreateAggregate_When_CreateNewInstance()
         {
-            //setup
             var directory = _entity.CreateNew(new DirectoryName("test_name"), new UserId(Identity.NewId), null);
             Assert.IsType<Directory>(directory);
         }

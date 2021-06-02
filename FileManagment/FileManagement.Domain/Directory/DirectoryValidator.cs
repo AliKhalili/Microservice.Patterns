@@ -52,29 +52,24 @@ namespace FileManagement.Domain.Directory
             return true;
         }
 
-
         private bool CheckModifiedDateTime()
         {
-            if (_entity.ModifiedDateTime == null)
-            {
-                _notificationHandler.HandleError($"{_entity.ModifiedDateTime} is null");
-                return false;
-            }
-            if (_entity.CreatedDateTime < _entity.ModifiedDateTime)
+            if (_entity.ModifiedDateTime != null && _entity.CreatedDateTime < _entity.ModifiedDateTime)
             {
                 _notificationHandler.HandleError($"{_entity.ModifiedDateTime} is lower than {_entity.CreatedDateTime}");
                 return false;
             }
             return true;
         }
+
         public override bool Validate()
         {
-            return CheckOwnerUserId() &&
-                   CheckName() &&
-                   CheckId() &&
-                   CheckDirectoryItems() &&
-                   CheckModifiedDateTime();
-
+            var isValid = CheckOwnerUserId();
+            isValid &= CheckName();
+            isValid &= CheckId();
+            isValid &= CheckDirectoryItems();
+            isValid &= CheckModifiedDateTime();
+            return isValid;
         }
     }
 }

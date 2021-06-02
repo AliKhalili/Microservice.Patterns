@@ -54,12 +54,6 @@ namespace FileManagement.Domain.Directory
             UserId ownerUserId,
             DirectoryId? parentId)
         {
-            Id = new DirectoryId(Identity.NewId);
-            Name = name;
-            OwnerUserId = ownerUserId;
-            ParentId = parentId;
-            CreatedDateTime = Clock.Now;
-
             Apply(new DirectoryCreated(name, ownerUserId, parentId));
             return this;
         }
