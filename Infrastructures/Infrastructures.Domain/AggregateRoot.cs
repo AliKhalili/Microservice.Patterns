@@ -19,7 +19,7 @@ namespace Infrastructures.Domain
         protected void Apply(IInternalEvent @event)
         {
             When(@event);
-            EnsureValidState();
+            Validate();
             _changes.Add(@event);
         }
 
@@ -27,7 +27,7 @@ namespace Infrastructures.Domain
 
         public void ClearChanges() => _changes.Clear();
 
-        protected abstract void EnsureValidState();
+        protected abstract void Validate();
 
         protected void ApplyToEntity(IInternalEventHandler entity, IInternalEvent @event)
             => entity?.Handle(@event);

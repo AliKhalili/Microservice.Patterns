@@ -3,7 +3,7 @@
 namespace Infrastructures.Domain
 {
     /// <summary>
-    /// Exception thrown by <see cref="AggregateRoot{TId}.EnsureValidState"/> when the aggregate felt in invalid state
+    /// Exception thrown by <see cref="AggregateRoot.Validate"/> when the aggregate felt in invalid state
     /// </summary>
     public class InvalidEntityStateException : Exception
     {

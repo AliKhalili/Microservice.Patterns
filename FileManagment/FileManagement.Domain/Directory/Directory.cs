@@ -9,41 +9,44 @@ namespace FileManagement.Domain.Directory
 {
     public class Directory : AggregateRoot<DirectoryId>
     {
-        private DirectoryId? _parentId;
-        private UserId _ownerUserId;
-        private IList<DirectoryItem> _directoryItems;
-        private DirectoryName _name;
-        private DateTime _createdDateTime;
-        private DateTime? _modifiedDateTime;
+        public DirectoryId? ParentId { get; private set; }
+        public UserId OwnerUserId { get; private set; }
+        public IList<DirectoryItem> DirectoryItems { get; private set; }
+        public DirectoryName Name { get; private set; }
+        public DateTime CreatedDateTime { get; private set; }
+        public DateTime? ModifiedDateTime { get; private set; }
+
+        private readonly DirectoryValidator _validator;
+
+        public Directory(IValidatorNotificationHandler notificationHandler)
+        {
+            _validator = new DirectoryValidator(this, notificationHandler);
+        }
 
         #region When Methods
         protected override void When(IInternalEvent @event) => When((dynamic)@event);
         private void When(DirectoryCreated @event)
         {
             Id = new DirectoryId(Identity.NewId);
-            _name = @event.Name;
-            _createdDateTime = Clock.Now;
-            _ownerUserId = @event.OwnerUserId;
-            _parentId = @event.ParentDirectoryId;
-            _directoryItems = new List<DirectoryItem>();
+            Name = @event.Name;
+            CreatedDateTime = Clock.Now;
+            OwnerUserId = @event.OwnerUserId;
+            ParentId = @event.ParentDirectoryId;
+            DirectoryItems = new List<DirectoryItem>();
         }
 
         private void When(NewItemAdded @event)
         {
-            _modifiedDateTime = Clock.Now;
-            _directoryItems.Add(@event.NewItem);
+            ModifiedDateTime = Clock.Now;
+            DirectoryItems.Add(@event.NewItem);
         }
         #endregion
 
 
-        protected override void EnsureValidState()
+        protected override void Validate()
         {
-            bool valid = Id != null && _ownerUserId != null && _name != null;
-            valid &= !_directoryItems.GroupBy(x => x.Id).Any(x => x.Count() > 1);
-            valid &= _modifiedDateTime == null || _createdDateTime < _modifiedDateTime;
-            if (!valid)
+            if (_validator.Validate())
                 throw new InvalidEntityStateException(this);
-
         }
 
         public Directory(
