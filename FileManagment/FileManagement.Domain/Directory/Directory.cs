@@ -51,7 +51,7 @@ namespace FileManagement.Domain.Directory
 
         protected override void Validate()
         {
-            if (_validator.Validate())
+            if (!_validator.Validate())
                 throw new InvalidEntityStateException(this);
         }
 
