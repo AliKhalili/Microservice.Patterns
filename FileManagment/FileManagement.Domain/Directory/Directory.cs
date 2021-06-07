@@ -35,10 +35,16 @@ namespace FileManagement.Domain.Directory
             DirectoryItems = new List<DirectoryItem>();
         }
 
-        private void When(NewItemAdded @event)
+        private void When(DirectoryNewItemAdded @event)
         {
             ModifiedDateTime = Clock.Now;
             DirectoryItems.Add(@event.NewItem);
+        }
+
+        private void When(DirectoryRenamed @event)
+        {
+            ModifiedDateTime = Clock.Now;
+            Name = @event.NewName;
         }
         #endregion
 
@@ -60,7 +66,21 @@ namespace FileManagement.Domain.Directory
 
         public void AddNewItem(DirectoryItem directoryItem)
         {
-            Apply(new NewItemAdded(directoryItem));
+            Apply(new DirectoryNewItemAdded(directoryItem));
+        }
+
+        public void DeleteItem(DirectoryItem directoryItem)
+        {
+            Apply(new DirectoryNewItemDeleted(directoryItem));
+        }
+        public void Rename(DirectoryName newName)
+        {
+            Apply(new DirectoryRenamed(newName));
+        }
+
+        public void Moved(DirectoryId newParentId)
+        {
+            Apply(new DirectoryMoved(newParentId));
         }
 
     }

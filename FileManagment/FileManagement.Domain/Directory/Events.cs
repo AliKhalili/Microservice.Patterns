@@ -5,7 +5,9 @@ using Infrastructures.Domain;
 namespace FileManagement.Domain.Directory
 {
     public record DirectoryCreated(DirectoryName Name, UserId OwnerUserId, DirectoryId ParentDirectoryId) : IInternalEvent;
-
-    public record NewItemAdded(DirectoryItem NewItem) : IInternalEvent;
+    public record DirectoryNewItemAdded(DirectoryItem NewItem) : IInternalEvent;
+    public record DirectoryNewItemDeleted(DirectoryItem DeletedItem) : IInternalEvent;
+    public record DirectoryRenamed(DirectoryName NewName) : IInternalEvent;
+    public record DirectoryMoved(DirectoryId NewParentId) : IInternalEvent;
 
 }
