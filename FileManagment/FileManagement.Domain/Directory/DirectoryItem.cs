@@ -1,5 +1,5 @@
 ﻿using FileManagement.Domain.Directory.ValueObjects;
-using Infrastructures.Domain;
+using BuildingBlock.Domain;
 
 namespace FileManagement.Domain.Directory
 {

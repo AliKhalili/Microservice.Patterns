@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace Infrastructures.Domain
+namespace BuildingBlock.Domain
 {
     public abstract class ValidationException : Exception
     {

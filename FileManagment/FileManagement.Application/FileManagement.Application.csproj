@@ -5,8 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Directory\Commands\" />
     <Folder Include="Directory\Handlers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BuildingBlock\BuildingBlock.Application\BuildingBlock.Application.csproj" />
   </ItemGroup>
 
 </Project>

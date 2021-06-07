@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Infrastructures.Domain
+namespace BuildingBlock.Domain
 {
     public class Clock
     {

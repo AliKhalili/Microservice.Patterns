@@ -1,8 +1,8 @@
-﻿using FileManagement.Domain.Directory;
+﻿using BuildingBlock.Domain;
+using FileManagement.Domain.Directory;
 using FileManagement.Domain.Directory.ValueObjects;
 using FileManagement.Domain.User;
 using FileManagement.Tests.Utils;
-using Infrastructures.Domain;
 using Xunit;
 
 namespace FileManagement.Tests

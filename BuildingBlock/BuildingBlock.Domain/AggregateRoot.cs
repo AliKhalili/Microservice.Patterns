@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Infrastructures.Domain
+namespace BuildingBlock.Domain
 {
     public abstract class AggregateRoot<TId> : AggregateRoot
         where TId : ValueObject

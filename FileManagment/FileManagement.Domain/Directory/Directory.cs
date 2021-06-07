@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FileManagement.Domain.Directory.ValueObjects;
 using FileManagement.Domain.User;
-using Infrastructures.Domain;
+using BuildingBlock.Domain;
 
 namespace FileManagement.Domain.Directory
 {

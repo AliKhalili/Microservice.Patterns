@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Infrastructures.Domain
+namespace BuildingBlock.Application
 {
-    public class Identity
+    public class CorrelationIds
     {
         public static Guid NewId => Guid.NewGuid();
     }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructures.Domain
+namespace BuildingBlock.Domain
 {
     public abstract class Validator<T> : IValidator where T : class
     {

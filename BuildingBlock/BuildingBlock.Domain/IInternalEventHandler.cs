@@ -1,4 +1,4 @@
-﻿namespace Infrastructures.Domain
+﻿namespace BuildingBlock.Domain
 {
     public interface IInternalEventHandler
     {

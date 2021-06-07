@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Infrastructures.Domain
+namespace BuildingBlock.Domain
 {
     /// <summary>
     /// Exception thrown by <see cref="AggregateRoot.Validate"/> when the aggregate felt in invalid state
