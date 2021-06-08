@@ -1,6 +1,6 @@
-﻿using BuildingBlock.Domain;
-using System;
+﻿using System;
 using System.Linq;
+using BuildingBlocks.Domain;
 
 namespace FileManagement.Domain.Directory
 {

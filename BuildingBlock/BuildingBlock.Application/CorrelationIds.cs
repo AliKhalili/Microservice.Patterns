@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BuildingBlock.Application
+namespace BuildingBlocks.Application
 {
     public class CorrelationIds
     {

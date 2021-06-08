@@ -1,5 +1,5 @@
 ﻿using System;
-using BuildingBlock.Domain;
+using BuildingBlocks.Domain;
 
 namespace FileManagement.Domain.User
 {

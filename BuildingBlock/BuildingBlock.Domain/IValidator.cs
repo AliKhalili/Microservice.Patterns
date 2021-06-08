@@ -1,4 +1,4 @@
-﻿namespace BuildingBlock.Domain
+﻿namespace BuildingBlocks.Domain
 {
     interface IValidator
     {

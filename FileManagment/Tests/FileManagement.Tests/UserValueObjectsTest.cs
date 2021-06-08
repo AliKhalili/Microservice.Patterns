@@ -1,5 +1,5 @@
 ﻿using System;
-using BuildingBlock.Domain;
+using BuildingBlocks.Domain;
 using FileManagement.Domain.User;
 using Xunit;
 

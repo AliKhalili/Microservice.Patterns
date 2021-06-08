@@ -1,4 +1,4 @@
-﻿using BuildingBlock.Domain;
+﻿using BuildingBlocks.Domain;
 
 namespace FileManagement.Tests.Utils
 {

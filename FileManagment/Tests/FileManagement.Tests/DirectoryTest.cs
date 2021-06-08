@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using BuildingBlock.Domain;
+using BuildingBlocks.Domain;
 using FileManagement.Domain.Directory;
 using FileManagement.Domain.Directory.ValueObjects;
 using FileManagement.Domain.User;

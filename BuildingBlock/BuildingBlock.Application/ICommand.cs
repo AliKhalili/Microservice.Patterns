@@ -1,7 +1,7 @@
 ﻿using System;
 using MediatR;
 
-namespace BuildingBlock.Application
+namespace BuildingBlocks.Application
 {
     public interface ICommand<out TResult> : IRequest<TResult>
     {

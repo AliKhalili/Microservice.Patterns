@@ -1,8 +1,8 @@
 ﻿using FileManagement.Application.Directory.Commands;
-using BuildingBlock.Application;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using BuildingBlocks.Application;
 
 namespace FileManagement.Application.Directory.Handlers
 {

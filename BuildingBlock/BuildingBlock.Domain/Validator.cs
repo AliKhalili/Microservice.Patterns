@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BuildingBlock.Domain
+﻿namespace BuildingBlocks.Domain
 {
     public abstract class Validator<T> : IValidator where T : class
     {

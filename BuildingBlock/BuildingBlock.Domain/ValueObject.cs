@@ -1,4 +1,4 @@
-﻿namespace BuildingBlock.Domain
+﻿namespace BuildingBlocks.Domain
 {
     public abstract record ValueObject
     {

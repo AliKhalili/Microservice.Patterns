@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BuildingBlock.Domain
+namespace BuildingBlocks.Domain
 {
     public abstract class Entity<TId> : Entity
         where TId : ValueObject

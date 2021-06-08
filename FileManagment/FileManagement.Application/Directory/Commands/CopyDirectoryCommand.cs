@@ -1,5 +1,5 @@
 ﻿using System;
-using BuildingBlock.Application;
+using BuildingBlocks.Application;
 
 namespace FileManagement.Application.Directory.Commands
 {

@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FileManagement", "FileManag
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileManagement.Domain", "FileManagment\FileManagement.Domain\FileManagement.Domain.csproj", "{B278FDE7-DF6E-4E44-BF89-39747224BFE8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlock", "BuildingBlock", "{46E35F92-F5BC-479F-AE50-4ED0F862F4BB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{46E35F92-F5BC-479F-AE50-4ED0F862F4BB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1FCF601C-2F27-40D6-B12B-8A9749AE37DD}"
 EndProject
@@ -15,11 +15,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileManagement.Tests", "Fil
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileManagement.Application", "FileManagment\FileManagement.Application\FileManagement.Application.csproj", "{CDE4EE04-C2C0-41E6-B7C2-A399EA5E3B96}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingBlock.Application", "BuildingBlock\BuildingBlock.Application\BuildingBlock.Application.csproj", "{AF6507C8-EBE9-4096-8FDB-22DAB8377CF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingBlocks.Application", "BuildingBlock\BuildingBlock.Application\BuildingBlocks.Application.csproj", "{AF6507C8-EBE9-4096-8FDB-22DAB8377CF4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingBlock.Domain", "BuildingBlock\BuildingBlock.Domain\BuildingBlock.Domain.csproj", "{5CA2D7CD-4BC4-4148-9DF0-8ECB1C149EC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingBlocks.Domain", "BuildingBlock\BuildingBlock.Domain\BuildingBlocks.Domain.csproj", "{5CA2D7CD-4BC4-4148-9DF0-8ECB1C149EC9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingBlock.Infrastructure", "BuildingBlock\BuildingBlock.Infrastructure\BuildingBlock.Infrastructure.csproj", "{9B8F385D-624C-4AA8-B546-F29676ABD405}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingBlocks.Infrastructure", "BuildingBlock\BuildingBlock.Infrastructure\BuildingBlocks.Infrastructure.csproj", "{9B8F385D-624C-4AA8-B546-F29676ABD405}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileManagement.Infrustructure", "FileManagment\FileManagement.Infrustructure\FileManagement.Infrustructure.csproj", "{58F901FA-8D2F-4860-BF3A-4715C84F1F8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{9B8F385D-624C-4AA8-B546-F29676ABD405}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B8F385D-624C-4AA8-B546-F29676ABD405}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B8F385D-624C-4AA8-B546-F29676ABD405}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58F901FA-8D2F-4860-BF3A-4715C84F1F8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58F901FA-8D2F-4860-BF3A-4715C84F1F8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58F901FA-8D2F-4860-BF3A-4715C84F1F8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58F901FA-8D2F-4860-BF3A-4715C84F1F8B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +69,7 @@ Global
 		{AF6507C8-EBE9-4096-8FDB-22DAB8377CF4} = {46E35F92-F5BC-479F-AE50-4ED0F862F4BB}
 		{5CA2D7CD-4BC4-4148-9DF0-8ECB1C149EC9} = {46E35F92-F5BC-479F-AE50-4ED0F862F4BB}
 		{9B8F385D-624C-4AA8-B546-F29676ABD405} = {46E35F92-F5BC-479F-AE50-4ED0F862F4BB}
+		{58F901FA-8D2F-4860-BF3A-4715C84F1F8B} = {3091DAFE-6114-4DD8-818D-B2C3D8D0B777}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4F8C8ED6-1DF6-4FD4-907F-641907DBD7C3}

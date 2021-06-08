@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\BuildingBlock\BuildingBlock.Application\BuildingBlock.Application.csproj" />
+    <ProjectReference Include="..\..\BuildingBlock\BuildingBlock.Application\BuildingBlocks.Application.csproj" />
   </ItemGroup>
 
 </Project>
