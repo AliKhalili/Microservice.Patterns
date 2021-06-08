@@ -27,7 +27,7 @@ namespace FileManagement.Domain.Directory
         protected override void When(IInternalEvent @event) => When((dynamic)@event);
         private void When(DirectoryCreated @event)
         {
-            Id = new DirectoryId(Identity.NewId);
+            Id = @event.Id;
             Name = @event.Name;
             CreatedDateTime = Clock.Now;
             OwnerUserId = @event.OwnerUserId;
@@ -60,7 +60,7 @@ namespace FileManagement.Domain.Directory
             UserId ownerUserId,
             DirectoryId? parentId)
         {
-            Apply(new DirectoryCreated(name, ownerUserId, parentId));
+            Apply(new DirectoryCreated(new DirectoryId(Identity.NewId),name, ownerUserId, parentId));
             return this;
         }
 

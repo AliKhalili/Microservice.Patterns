@@ -23,7 +23,7 @@ namespace BuildingBlock.Domain
             _changes.Add(@event);
         }
 
-        public IEnumerable<object> GetChanges() => _changes.AsEnumerable();
+        public IEnumerable<IInternalEvent> GetChanges() => _changes.AsEnumerable();
 
         public void ClearChanges() => _changes.Clear();
 
