@@ -14,14 +14,7 @@ namespace FileManagement.Infrastructure
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder
-                .Entity<FileManagementEntryEntity>()
-                .ToTable("Entries", "fm")
-                .HasDiscriminator<FileManagementEntryType>(nameof(FileManagementEntryEntity.EntryType))
-                .HasValue<FileManagementEntryEntity>(FileManagementEntryType.Unknown)
-                .HasValue<DirectoryEntity>(FileManagementEntryType.Directory)
-                .HasValue<FileEntity>(FileManagementEntryType.File);
-            builder.Entity<FileManagementEntryEntity>().HasOne(x => x.ParentDirectory);
+            builder.ApplyConfiguration(new FileManagementEntryEntityTypeConfiguration());
             builder.Entity<DirectoryEntity>(x => x.HasBaseType<FileManagementEntryEntity>());
             builder.Entity<FileEntity>(x => x.HasBaseType<FileManagementEntryEntity>());
 

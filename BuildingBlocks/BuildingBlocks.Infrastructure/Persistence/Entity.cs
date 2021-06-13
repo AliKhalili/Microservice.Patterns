@@ -1,6 +1,7 @@
 ﻿namespace BuildingBlocks.Infrastructure.Persistence
 {
-    public interface IRepository
+    public class Entity<TId>
     {
+
     }
 }

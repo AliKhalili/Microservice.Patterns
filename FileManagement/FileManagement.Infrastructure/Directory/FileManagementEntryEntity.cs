@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using BuildingBlocks.Infrastructure.Persistence;
 
 namespace FileManagement.Infrastructure.Directory
 {
@@ -6,7 +8,7 @@ namespace FileManagement.Infrastructure.Directory
     /// represent a table in sql server which implement TPH inheritance(table-per-hierarchy) for File Management Module.
     /// <br></br>TPH inheritance pattern generally deliver better performance in the entity framework than TPT(table-per-type) inheritance patterns, because TPT patterns can result in complex join quires.
     /// </summary>
-    public class FileManagementEntryEntity
+    public class FileManagementEntryEntity : Entity<Guid>
     {
         public Guid Id { get; set; }
         public Guid OwnerUserId { get; set; }
@@ -16,6 +18,6 @@ namespace FileManagement.Infrastructure.Directory
         public FileManagementEntryType EntryType { get; set; }
 
         public Guid? ParentDirectoryId { get; set; }
-        public FileManagementEntryEntity ParentDirectory { get; set; }
+        public ICollection<FileManagementEntryEntity> Items { get; set; }
     }
 }
