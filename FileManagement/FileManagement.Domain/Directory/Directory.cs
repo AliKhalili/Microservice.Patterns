@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using FileManagement.Domain.Directory.ValueObjects;
 using FileManagement.Domain.User;
 using BuildingBlocks.Domain;
@@ -9,7 +8,7 @@ namespace FileManagement.Domain.Directory
 {
     public class Directory : AggregateRoot<DirectoryId>
     {
-        public DirectoryId? ParentId { get; private set; }
+        public DirectoryId? ParentDirectoryId { get; private set; }
         public UserId OwnerUserId { get; private set; }
         public IList<DirectoryItem> DirectoryItems { get; private set; }
         public DirectoryName Name { get; private set; }
@@ -31,7 +30,7 @@ namespace FileManagement.Domain.Directory
             Name = @event.Name;
             CreatedDateTime = Clock.Now;
             OwnerUserId = @event.OwnerUserId;
-            ParentId = @event.ParentDirectoryId;
+            ParentDirectoryId = @event.ParentDirectoryId;
             DirectoryItems = new List<DirectoryItem>();
         }
 

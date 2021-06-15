@@ -5,7 +5,7 @@ namespace FileManagement.Domain.Directory
 {
     public class DirectoryItem : Entity<DirectoryItemId>
     {
-        private DirectoryId _directoryId;
+        public DirectoryId? DirectoryId { get; private set; }
         private string _name;
 
         protected override void When(IInternalEvent @event)
