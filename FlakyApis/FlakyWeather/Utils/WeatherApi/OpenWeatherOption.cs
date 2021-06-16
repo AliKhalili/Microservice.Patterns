@@ -1,4 +1,4 @@
-﻿namespace FlakyWeather.Utils.WeatherApi
+﻿namespace FlakyApi.Utils.WeatherApi
 {
     public class OpenWeatherOption
     {

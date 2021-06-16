@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>FlakyApi</AssemblyName>
+    <RootNamespace>FlakyApi</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

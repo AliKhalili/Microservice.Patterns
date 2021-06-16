@@ -1,15 +1,15 @@
+using System;
+using FlakyApi.Utils;
+using FlakyApi.Utils.Strategy;
+using FlakyApi.Utils.WeatherApi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System;
-using FlakyWeather.Utils;
-using FlakyWeather.Utils.Strategy;
-using FlakyWeather.Utils.WeatherApi;
 
-namespace FlakyWeather
+namespace FlakyApi
 {
     public class Startup
     {
@@ -27,18 +27,18 @@ namespace FlakyWeather
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "FlakyWeather", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "FlakyApi", Version = "v1" });
             });
 
-            services.Configure<OpenWeatherOption>(options =>
-            {
-                options.ApiKey = Environment.GetEnvironmentVariable(OpenWeatherOption.EnvironmentApiKey);
-                options.ApiKey = "960980ac630e86ac4a5729f5a021ce63";
-            });
+            //services.Configure<OpenWeatherOption>(options =>
+            //{
+            //    options.ApiKey = Environment.GetEnvironmentVariable(OpenWeatherOption.EnvironmentApiKey);
+            //    options.ApiKey = "960980ac630e86ac4a5729f5a021ce63";
+            //});
             services.AddLogging();
             services.AddHttpClient();
-            services.AddScoped<IFlakyStrategy, NoOperationFlakyStrategy>();
-            services.AddScoped<OpenWeatherMapService>();
+            services.AddSingleton<IFlakyStrategy>(_ => new CircuitBreakerFlakyStrategy(TimeSpan.FromSeconds(1)));
+            services.AddScoped<FakeWeatherService>();
             services.AddScoped<IWeatherService, FlakyWeatherService>();
         }
 
@@ -49,7 +49,7 @@ namespace FlakyWeather
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FlakyWeather v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FlakyApi v1"));
             }
 
             app.UseHttpsRedirection();

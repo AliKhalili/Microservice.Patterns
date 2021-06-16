@@ -2,28 +2,18 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace FlakyWeather.Utils.Strategy
+namespace FlakyApi.Utils.Strategy
 {
     public class CircuitBreakerFlakyStrategy : IFlakyStrategy
     {
-        private long _lastRequestExecutingTick;
-        private int _totalRequest;
-        private int _totalFailedRequest;
+        private long _lastChangeStateTime;
         private CircuitBreakerStrategyState _circuitState;
-        private readonly TimeSpan _shouldOpenTimeSpan;
-        private readonly TimeSpan _shouldHalfOpenTimeSpan;
-        private readonly TimeSpan _shouldCloseTimeSpan;
-        private readonly double _shouldOpenFailureRatio;
-        private readonly double _shouldHalfOpenFailureRatio;
+        private readonly TimeSpan _durationOfBreak;
         private readonly object _lock = new object();
-        public CircuitBreakerFlakyStrategy(TimeSpan shouldOpenTimeSpan, TimeSpan shouldHalfOpenTimeSpan, TimeSpan shouldCloseTimeSpan)
+        public CircuitBreakerFlakyStrategy(TimeSpan durationOfBreak)
         {
-            _shouldOpenTimeSpan = shouldOpenTimeSpan;
-            _shouldHalfOpenTimeSpan = shouldHalfOpenTimeSpan;
-            _shouldCloseTimeSpan = shouldCloseTimeSpan;
-            _circuitState = CircuitBreakerStrategyState.ShouldClosed;
-            _shouldOpenFailureRatio = 4.0 / 5.0;
-            _shouldHalfOpenFailureRatio = 1.0 / 5.0;
+            _durationOfBreak = durationOfBreak;
+            Reset();
         }
 
         public Task<TResult> Execute<TResult>(Func<IDictionary<string, object>, Task<TResult>> func, IDictionary<string, object> parameters)
@@ -37,43 +27,47 @@ namespace FlakyWeather.Utils.Strategy
         {
             lock (_lock)
             {
-                _totalRequest++;
-                _lastRequestExecutingTick = DateTime.UtcNow.Ticks;
-                var durationOfChangeState = DateTime.UtcNow.Ticks - _lastRequestExecutingTick;
-                switch (_circuitState)
+                var timePassedFromLastChangeState = DateNow - _lastChangeStateTime;
+                if (timePassedFromLastChangeState > _durationOfBreak.Ticks)
                 {
-                    case CircuitBreakerStrategyState.ShouldClosed:
-                        if (durationOfChangeState > _shouldCloseTimeSpan.Ticks)
+                    switch (_circuitState)
+                    {
+                        case CircuitBreakerStrategyState.ShouldClosed:
+                            _circuitState = CircuitBreakerStrategyState.ShouldOpen;
+                            break;
+                        case CircuitBreakerStrategyState.ShouldHalfOpen:
+                            _circuitState = new Random(DateTime.UtcNow.Millisecond).NextDouble() > 0.5 ? 
+                                CircuitBreakerStrategyState.ShouldClosed :
+                                CircuitBreakerStrategyState.ShouldOpen;
+                            break;
+                        case CircuitBreakerStrategyState.ShouldOpen:
                             _circuitState = CircuitBreakerStrategyState.ShouldHalfOpen;
-                        break;
-                    case CircuitBreakerStrategyState.ShouldHalfOpen:
-                        if (durationOfChangeState > _shouldHalfOpenTimeSpan.Ticks)
-                            _circuitState = CircuitBreakerStrategyState.ShouldOpen;
-                        if ((double) _totalFailedRequest / _totalRequest < _shouldHalfOpenFailureRatio)
-                        {
-                            _totalFailedRequest++;
-                            throw new FlakyServiceHalfOpenException();
-                        }
-                        Reset();
-                        _circuitState = CircuitBreakerStrategyState.ShouldOpen;
-                        break;
-                    case CircuitBreakerStrategyState.ShouldOpen:
-                        if (durationOfChangeState > _shouldOpenTimeSpan.Ticks)
-                            _circuitState = CircuitBreakerStrategyState.ShouldOpen;
-                        if ((double)_totalFailedRequest / _totalRequest < _shouldHalfOpenFailureRatio)
-                        {
-                            _totalFailedRequest++;
-                            throw new FlakyServiceHalfOpenException();
-                        }
-                        Reset();
-                        _circuitState = CircuitBreakerStrategyState.ShouldOpen;
-                        break;
-                    default:
-                        throw new InvalidOperationException("Unhandled CircuitState.");
+                            break;
+                        default:
+                            throw new InvalidOperationException("Unhandled CircuitState.");
+                    }
+                    _lastChangeStateTime = DateNow;
                 }
+
+                if (_circuitState == CircuitBreakerStrategyState.ShouldHalfOpen)
+                    if (new Random(DateTime.UtcNow.Millisecond).NextDouble() > 0.5)
+                        throw new FlakyServiceHalfOpenException();
+
+                if (_circuitState == CircuitBreakerStrategyState.ShouldOpen)
+                    throw new FlakyServiceOpenException();
             }
         }
-        private void Reset() { }
+
+        private void Reset()
+        {
+            lock (_lock)
+            {
+                _circuitState = CircuitBreakerStrategyState.ShouldClosed;
+                _lastChangeStateTime = DateNow;
+            }
+        }
+
+        private long DateNow => DateTime.UtcNow.Ticks;
     }
 
     public class FlakyServiceHalfOpenException : Exception

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace FlakyWeather.Utils.WeatherApi
+namespace FlakyApi.Utils.WeatherApi
 {
     public class WeatherResponse
     {
@@ -14,7 +14,7 @@ namespace FlakyWeather.Utils.WeatherApi
         [JsonPropertyName("weather")]
         public IEnumerable<WeatherProperty> Weather { get; set; }
         [JsonPropertyName("id")]
-        public int Id { get; set; }
+        public long Id { get; set; }
         [JsonPropertyName("name")]
         public string Name { get; set; }
         public class MainProperty

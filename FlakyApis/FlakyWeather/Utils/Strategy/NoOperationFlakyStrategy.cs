@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace FlakyWeather.Utils.Strategy
+namespace FlakyApi.Utils.Strategy
 {
     public class NoOperationFlakyStrategy : IFlakyStrategy
     {

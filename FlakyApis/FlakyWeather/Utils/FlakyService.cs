@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using FlakyWeather.Utils.WeatherApi;
+using FlakyApi.Utils.WeatherApi;
 using Microsoft.Extensions.Logging;
 
-namespace FlakyWeather.Utils
+namespace FlakyApi.Utils
 {
     public class FlakyWeatherService : IWeatherService
     {
@@ -11,7 +11,7 @@ namespace FlakyWeather.Utils
         private IFlakyStrategy _flakyStrategy;
         private IWeatherService _weatherService;
 
-        public FlakyWeatherService(ILogger<FlakyWeatherService> logger, IFlakyStrategy flakyStrategy, OpenWeatherMapService weatherService)
+        public FlakyWeatherService(ILogger<FlakyWeatherService> logger, IFlakyStrategy flakyStrategy, FakeWeatherService weatherService)
         {
             _logger = logger;
             _flakyStrategy = flakyStrategy;

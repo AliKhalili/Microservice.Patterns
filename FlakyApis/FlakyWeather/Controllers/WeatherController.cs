@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
 using System.Threading.Tasks;
-using FlakyWeather.Utils;
-using FlakyWeather.Utils.WeatherApi;
+using FlakyApi.Utils;
+using FlakyApi.Utils.Strategy;
+using FlakyApi.Utils.WeatherApi;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace FlakyWeather.Controllers
+namespace FlakyApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -27,10 +29,22 @@ namespace FlakyWeather.Controllers
         [Produces("application/json")]
         public async Task<IActionResult> Index(string city)
         {
-            var result = await _weatherService.GetWeatherAsync(city);
-            if (result != null)
-                return Ok(result);
-            return BadRequest();
+            try
+            {
+                var result = await _weatherService.GetWeatherAsync(city);
+                if (result != null)
+                    return Ok(result);
+            }
+            catch (FlakyServiceHalfOpenException)
+            {
+                return StatusCode(StatusCodes.Status503ServiceUnavailable);
+            }
+            catch (FlakyServiceOpenException)
+            {
+                return StatusCode(StatusCodes.Status406NotAcceptable);
+            }
+
+            return BadRequest(StatusCodes.Status400BadRequest);
         }
     }
 }

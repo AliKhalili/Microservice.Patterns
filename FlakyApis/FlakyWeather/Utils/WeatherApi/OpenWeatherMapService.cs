@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace FlakyWeather.Utils.WeatherApi
+namespace FlakyApi.Utils.WeatherApi
 {
     public class OpenWeatherMapService : IWeatherService
     {

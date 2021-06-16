@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using FlakyWeather.Utils.WeatherApi;
+using FlakyApi.Utils.WeatherApi;
 
-namespace FlakyWeather.Utils
+namespace FlakyApi.Utils
 {
     /// <summary>
     /// Access current weather data for any location on Earth

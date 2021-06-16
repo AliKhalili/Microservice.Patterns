@@ -1,4 +1,4 @@
-﻿namespace FlakyWeather.Utils.Strategy
+﻿namespace FlakyApi.Utils.Strategy
 {
     public enum CircuitBreakerStrategyState
     {

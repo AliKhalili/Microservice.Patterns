@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace FlakyWeather.Utils
+namespace FlakyApi.Utils
 {
     public interface IFlakyStrategy
     {
