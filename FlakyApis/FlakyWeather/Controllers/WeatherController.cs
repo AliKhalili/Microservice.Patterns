@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using FlakyApi.Utils;
 using FlakyApi.Utils.Strategy;
+using FlakyApi.Utils.Strategy.CircuitBreaker;
 using FlakyApi.Utils.WeatherApi;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

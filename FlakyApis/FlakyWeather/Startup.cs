@@ -1,6 +1,8 @@
 using System;
+using FlakyApi.Implementation;
 using FlakyApi.Utils;
 using FlakyApi.Utils.Strategy;
+using FlakyApi.Utils.Strategy.CircuitBreaker;
 using FlakyApi.Utils.WeatherApi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,9 +39,10 @@ namespace FlakyApi
             //});
             services.AddLogging();
             services.AddHttpClient();
-            services.AddSingleton<IFlakyStrategy>(_ => new CircuitBreakerFlakyStrategy(TimeSpan.FromSeconds(1)));
-            services.AddScoped<FakeWeatherService>();
-            services.AddScoped<IWeatherService, FlakyWeatherService>();
+            services.AddSingleton<IFlakyService, DefaultFlakyService>();
+            //services.AddSingleton<IFlakyStrategy>(_ => new CircuitBreakerFlakyStrategy(TimeSpan.FromSeconds(1)));
+            //services.AddScoped<FakeWeatherService>();
+            //services.AddScoped<IWeatherService, FlakyWeatherService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

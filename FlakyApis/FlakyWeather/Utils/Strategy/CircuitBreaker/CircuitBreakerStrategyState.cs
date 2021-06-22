@@ -1,4 +1,4 @@
-﻿namespace FlakyApi.Utils.Strategy
+﻿namespace FlakyApi.Utils.Strategy.CircuitBreaker
 {
     public enum CircuitBreakerStrategyState
     {
