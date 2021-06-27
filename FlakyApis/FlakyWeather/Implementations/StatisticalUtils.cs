@@ -3,16 +3,16 @@ using System.Linq;
 
 namespace FlakyApi.Implementations
 {
-    public class StatisticalUtils
+    public static class StatisticalUtils
     {
         /// <summary>
         /// implementation of Cumulative distribution function fot Exponential Distribution
-        /// <para><see cref="https://en.wikipedia.org/wiki/Exponential_distribution"/></para>
+        /// <para><see><cref>https://en.wikipedia.org/wiki/Exponential_distribution</cref></see></para>
         /// </summary>
         public static double ExponentialDistributionCdfFunc(double lambda, int timeStep) => 1 - Math.Exp(-lambda * timeStep);
 
         /// <summary>
-        /// this method is borrowed from <see cref="https://stackoverflow.com/a/43345968/426983"/> 
+        /// this method is borrowed from <see><cref>https://stackoverflow.com/a/43345968/426983</cref></see>
         /// </summary>
         public static int NonUniformRandomChoice(double[] entriesProbabilities)
         {

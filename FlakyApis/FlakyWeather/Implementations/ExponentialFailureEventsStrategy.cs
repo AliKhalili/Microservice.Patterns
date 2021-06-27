@@ -12,7 +12,7 @@ namespace FlakyApi.Implementations
         private readonly int _timeStepInterval;
         private readonly double _lambda;
         private int _timeStep;
-        private readonly object _lock = new object();
+        private readonly object _lock = new();
 
         public ExponentialFailureEventsStrategy(ILogger<ExponentialFailureEventsStrategy> logger, IOptions<FlakyStrategyOptions> options)
         {
@@ -28,6 +28,13 @@ namespace FlakyApi.Implementations
             return func(parameters);
         }
 
+        public Task Reset()
+        {
+            _timeStep = 0;
+            _logger.LogInformation("reset of {0} is called", nameof(ExponentialFailureEventsStrategy));
+            return Task.CompletedTask;
+        }
+
         private void OnRequestExecuting()
         {
             lock (_lock)
@@ -35,8 +42,10 @@ namespace FlakyApi.Implementations
                 var failureEventProbability = StatisticalUtils.ExponentialDistributionCdfFunc(_lambda, _timeStep);
                 var isSystemUp = StatisticalUtils.NonUniformRandomChoice(new[] { 1 - failureEventProbability, failureEventProbability });
                 _timeStep++;
+
                 if (_timeStep == _timeStepInterval)
-                    _timeStep = 0;
+                    Reset();
+
                 if (isSystemUp == 1)
                     throw new ServiceCurrentlyUnavailableException();
             }

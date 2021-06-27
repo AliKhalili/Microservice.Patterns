@@ -7,5 +7,6 @@ namespace FlakyApi.Implementations
     public interface IFlakyStrategy
     {
         Task<TResult> Execute<TResult>(Func<IDictionary<string, object>, Task<TResult>> func, IDictionary<string, object> parameters);
+        Task Reset();
     }
 }
