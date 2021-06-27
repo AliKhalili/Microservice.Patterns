@@ -10,7 +10,7 @@ namespace FlakyApiBenchmark
 {
     class Program
     {
-        static readonly SemaphoreSlim Semaphore = new(100, 100);
+        static readonly SemaphoreSlim Semaphore = new(1, 1);
 
         public static void Main()
         {

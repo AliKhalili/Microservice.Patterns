@@ -362,3 +362,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /FlakyApis/python/FlakyClient/.idea
+/FlakyApis/python/FlakyClient/.ipynb_checkpoints

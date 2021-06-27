@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
-using FlakyApi.Implementation;
-using FlakyApi.Utils.Strategy.CircuitBreaker;
+using FlakyApi.Implementations;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -12,25 +11,31 @@ namespace FlakyApi.Controllers
     public class SystemController : ControllerBase
     {
         private readonly ILogger<SystemController> _logger;
-        private readonly IFlakyService _flakyService;
+        private readonly IService _service;
 
-        public SystemController(ILogger<SystemController> logger, IFlakyService flakyService)
+        public SystemController(ILogger<SystemController> logger, IService service)
         {
             _logger = logger;
-            _flakyService = flakyService;
+            _service = service;
         }
 
         [HttpGet]
-        [Route("[status]")]
+        [Route("[action]")]
         [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [Produces("application/json")]
         public async Task<IActionResult> Status()
         {
-            var result = await _flakyService.RetrieveSystemStatus();
-            if (result)
-                return Ok();
-            return StatusCode(StatusCodes.Status503ServiceUnavailable);
+            try
+            {
+                var result = await _service.DoSomething();
+                return Ok(result);
+            }
+            catch (ServiceCurrentlyUnavailableException e)
+            {
+                _logger.LogError(e, "service is not available");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable);
+            }
         }
     }
 }
