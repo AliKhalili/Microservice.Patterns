@@ -9,12 +9,12 @@ namespace FlakyApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class SystemController : ControllerBase
+    public class CircuitBreakerController : ControllerBase
     {
-        private readonly ILogger<SystemController> _logger;
+        private readonly ILogger<CircuitBreakerController> _logger;
         private readonly IService _service;
 
-        public SystemController(ILogger<SystemController> logger, IService service)
+        public CircuitBreakerController(ILogger<CircuitBreakerController> logger, IService service)
         {
             _logger = logger;
             _service = service;
