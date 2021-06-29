@@ -8,7 +8,7 @@ namespace FlakyApi.Implementations
         private readonly ILogger<DefaultFlakyService> _logger;
         private readonly IService _service;
         private readonly IFlakyStrategy _flakyStrategy;
-        public DefaultFlakyService(ILogger<DefaultFlakyService> logger, DefaultService service, IFlakyStrategy flakyStrategy)
+        public DefaultFlakyService(ILogger<DefaultFlakyService> logger, IService service, IFlakyStrategy flakyStrategy)
         {
             _logger = logger;
             _service = service;

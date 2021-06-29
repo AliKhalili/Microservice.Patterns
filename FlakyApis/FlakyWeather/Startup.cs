@@ -1,3 +1,4 @@
+using Autofac;
 using FlakyApi.Implementations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,10 +30,13 @@ namespace FlakyApi
 
             services.AddLogging();
             services.AddHttpClient();
+
             services.Configure<FlakyStrategyOptions>(Configuration.GetSection(FlakyStrategyOptions.ConfigSection));
-            services.AddSingleton<IService, DefaultFlakyService>();
-            services.AddSingleton<DefaultService>();
-            services.AddSingleton<IFlakyStrategy, ExponentialFailureEventsStrategy>();
+        }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new AutofacModule());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
