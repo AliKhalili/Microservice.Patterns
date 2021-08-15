@@ -18,7 +18,7 @@ namespace FlakyApi.Implementations
         {
             _logger = logger;
             _timeStepInterval = options.Value.TimeStepInterval;
-            _lambda = 1 / (double)options.Value.FirstEventOccurrenceTimeStep / 60 * _timeStepInterval;
+            _lambda = 1 / (double)options.Value.FirstEventOccurrenceTimeStep;
             _timeStep = 0;
         }
 

@@ -11,7 +11,7 @@ namespace FlakyApi.Implementations
     public interface IFlakyStrategy
     {
         /// <summary>
-        /// A wrapper for function which we want to turn its behavior for flaky.
+        /// A wrapper for a function which we want to turn its behavior to flaky.
         /// </summary>
         /// <typeparam name="TResult">the return type of given function</typeparam>
         /// <param name="func"></param>
