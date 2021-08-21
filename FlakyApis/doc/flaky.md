@@ -107,7 +107,7 @@ private void OnRequestExecuting()
 
 
 <p align="center">
-    <img src="img/class_diagram.png" />
+    <img src="img/class_diagram.jpg" />
 </p>
 
 در اینجا سرویس DefaultService که یک سرویس تنها با یک متد می باشد را پیاده سازی کرده ایم. از این کلاس بعنوان یک سرویس دهنده اصلی استفاده  می کنیم تا رفتار این سرویس دهنده را با استفاده از الگوی استراتژی که قبلا شرح داده شد به یک سرویس با رفتار شکننده تغییر دهیم. در این زیر پیاده سازی این سرویس را مشاهده می کنید:
@@ -175,7 +175,7 @@ public class AutofacModule : Module
 همانطور که مشخص است براساس ترتیب تعریف وابستگی ها هر بار که نیاز به یک `IService` داشته باشیم autofac مانند شکل زیر عمل میکند و فراخوانی ها را به ترتیب تعریف شده در کلاس `AutofacModule` در زمان اجرای برنامه مدیریت می کند.
 
 <p align="center">
-    <img src="img/sequence_diagram.png" />
+    <img src="img/sequence_diagram.jpg" />
 </p>
 
 # Client
