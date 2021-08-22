@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FlakyApi.Utils
+namespace FlakyApi.Implementations
 {
     internal class Clock
     {

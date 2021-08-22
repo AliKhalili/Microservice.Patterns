@@ -1,4 +1,5 @@
 ﻿using System;
+using FlakyApi.Implementations;
 
 namespace FlakyApi.Utils.Strategy.CircuitBreaker.Internal
 {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using FlakyApi.Implementations;
 using FlakyApi.Utils.Strategy.CircuitBreaker.Internal;
 
 namespace FlakyApi.Utils.Strategy.CircuitBreaker

@@ -35,7 +35,11 @@ namespace FlakyApi.Controllers
             catch (ServiceCurrentlyUnavailableException e)
             {
                 _logger.LogError(e, "service is not available");
-                return StatusCode(StatusCodes.Status503ServiceUnavailable);
+                return BadRequest(new
+                {
+                    TimeStep = e.RelativeTimeStep,
+                    Message = nameof(ServiceCurrentlyUnavailableException)
+                });
             }
         }
 
