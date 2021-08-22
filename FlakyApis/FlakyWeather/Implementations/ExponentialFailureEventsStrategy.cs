@@ -40,13 +40,13 @@ namespace FlakyApi.Implementations
             lock (_lock)
             {
                 var failureEventProbability = StatisticalUtils.ExponentialDistributionCdfFunc(_lambda, _timeStep);
-                var isSystemUp = StatisticalUtils.NonUniformRandomChoice(new[] { 1 - failureEventProbability, failureEventProbability });
+                var isSystemDown = StatisticalUtils.NonUniformRandomChoice(new[] { 1 - failureEventProbability, failureEventProbability });
                 _timeStep++;
 
                 if (_timeStep == _timeStepInterval)
                     Reset();
 
-                if (isSystemUp == 1)
+                if (isSystemDown == 1)
                     throw new ServiceCurrentlyUnavailableException();
             }
         }
