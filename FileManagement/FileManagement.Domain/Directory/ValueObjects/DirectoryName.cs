@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using BuildingBlocks.Domain;
 
 namespace FileManagement.Domain.Directory.ValueObjects
@@ -19,5 +20,9 @@ namespace FileManagement.Domain.Directory.ValueObjects
         }
 
         public string Value { get; }
+        protected override IEnumerable<object> GetEqualityComponents()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
